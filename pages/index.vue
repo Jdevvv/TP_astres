@@ -1,63 +1,82 @@
 <template>
   <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">TP_astres</h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+    <p v-if="$fetchState.pending">🪐 Récupération des planètes... 🪐</p>
+    <p v-else-if="$fetchState.error">😥 Une erreur est survenue 😥</p>
+    <a-table v-else :columns="columns" :data-source="stars">
+      <a slot="name" slot-scope="name">{{ name }}</a>
+      <span slot="isPlanet" slot-scope="isPlanet"
+        ><a-tag :color="isPlanet ? 'green' : 'volcano'">
+          {{ isPlanet.toString().toUpperCase() }}
+        </a-tag></span
+      >
+      <span slot="mass" slot-scope="mass">{{
+        mass ? mass.massValue : 'unknown'
+      }}</span>
+      <span slot="vol" slot-scope="vol">{{
+        vol ? vol.volValue : 'unknown'
+      }}</span>
+      <a-button slot="more" type="primary"> Details </a-button>
+    </a-table>
   </div>
 </template>
 
 <script>
-export default {}
+const columns = [
+  {
+    title: 'Name',
+    dataIndex: 'name',
+    key: 'name',
+    scopedSlots: { customRender: 'name' },
+  },
+  {
+    title: 'Type',
+    dataIndex: 'isPlanet',
+    key: 'isPlanet',
+    scopedSlots: { customRender: 'isPlanet' },
+  },
+  {
+    title: 'Mass Value',
+    dataIndex: 'mass',
+    key: 'mass',
+    scopedSlots: { customRender: 'mass' },
+  },
+  {
+    title: 'Volume Value',
+    key: 'vol',
+    dataIndex: 'vol',
+    scopedSlots: { customRender: 'vol' },
+  },
+  {
+    title: 'More',
+    key: 'more',
+    scopedSlots: { customRender: 'more' },
+  },
+]
+
+export default {
+  data() {
+    return {
+      // data,
+      columns,
+      stars: [],
+    }
+  },
+  async fetch() {
+    this.stars = await this.$axios
+      .get('https://api.le-systeme-solaire.net/rest/bodies')
+      .then((res) => res.data.bodies)
+  },
+}
 </script>
 
 <style>
 .container {
-  margin: 0 auto;
-  min-height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
-  text-align: center;
+  justify-content: center;
 }
 
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+.ant-table-wrapper {
+  width: 90%;
 }
 </style>
