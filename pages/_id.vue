@@ -1,6 +1,8 @@
 <template>
   <div class="container">
-    <a-descriptions title="Star Info">
+    <p v-if="$fetchState.pending">🪐 Chargement de la planète... 🪐</p>
+    <p v-else-if="$fetchState.error">😥 Une erreur est survenue 😥</p>
+    <a-descriptions v-else title="Star Info">
       <a-descriptions-item label="name"> {{ star.name }} </a-descriptions-item>
       <a-descriptions-item label="englishName">{{
         star.englishName

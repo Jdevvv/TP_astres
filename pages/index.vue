@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <p v-if="$fetchState.pending">🪐 Récupération des planètes... 🪐</p>
+    <p v-if="$fetchState.pending">🪐 Chargement des planètes... 🪐</p>
     <p v-else-if="$fetchState.error">😥 Une erreur est survenue 😥</p>
     <a-table v-else :columns="columns" :data-source="stars">
       <nuxt-link
@@ -20,7 +20,9 @@
       <span slot="vol" slot-scope="vol">{{
         vol ? vol.volValue : 'unknown'
       }}</span>
-      <a-button slot="more" type="primary"> Details </a-button>
+      <a-button slot="more" slot-scope="record" type="primary">
+        <nuxt-link :to="{ path: `/${record.id}` }"> Details</nuxt-link>
+      </a-button>
     </a-table>
   </div>
 </template>
