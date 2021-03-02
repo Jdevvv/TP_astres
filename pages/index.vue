@@ -3,7 +3,12 @@
     <p v-if="$fetchState.pending">🪐 Récupération des planètes... 🪐</p>
     <p v-else-if="$fetchState.error">😥 Une erreur est survenue 😥</p>
     <a-table v-else :columns="columns" :data-source="stars">
-      <a slot="name" slot-scope="name">{{ name }}</a>
+      <nuxt-link
+        slot="name"
+        slot-scope="name, record"
+        :to="{ path: `/${record.id}` }"
+        >{{ name }}</nuxt-link
+      >
       <span slot="isPlanet" slot-scope="isPlanet"
         ><a-tag :color="isPlanet ? 'green' : 'volcano'">
           {{ isPlanet.toString().toUpperCase() }}
@@ -70,12 +75,6 @@ export default {
 </script>
 
 <style>
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .ant-table-wrapper {
   width: 90%;
 }
