@@ -1,29 +1,53 @@
 <template>
-  <div class="container">
-    <p v-if="$fetchState.pending">🪐 Chargement des planètes... 🪐</p>
-    <p v-else-if="$fetchState.error">😥 Une erreur est survenue 😥</p>
-    <a-table v-else :columns="columns" :data-source="stars">
-      <nuxt-link
-        slot="name"
-        slot-scope="name, record"
-        :to="{ path: `/${record.id}` }"
-        >{{ name }}</nuxt-link
-      >
-      <span slot="isPlanet" slot-scope="isPlanet"
-        ><a-tag :color="isPlanet ? 'green' : 'volcano'">
-          {{ isPlanet.toString().toUpperCase() }}
-        </a-tag></span
-      >
-      <span slot="mass" slot-scope="mass">{{
-        mass ? mass.massValue : 'unknown'
-      }}</span>
-      <span slot="vol" slot-scope="vol">{{
-        vol ? vol.volValue : 'unknown'
-      }}</span>
-      <a-button slot="more" slot-scope="record" type="primary">
-        <nuxt-link :to="{ path: `/${record.id}` }"> Details</nuxt-link>
-      </a-button>
-    </a-table>
+  <div>
+    <a-select
+      v-model="filterPlanet"
+      placeholder="Filter Planet"
+      style="width: 150px"
+      @change="handleFilter"
+    >
+      <a-select-option value="all"> All </a-select-option>
+      <a-select-option value="true"> Planet </a-select-option>
+      <a-select-option value="false"> Not planet </a-select-option>
+    </a-select>
+
+    <a-select
+      v-model="filterMoons"
+      placeholder="Contains..."
+      style="width: 150px"
+      @change="handleFilter"
+    >
+      <a-select-option value="all"> All </a-select-option>
+      <a-select-option value="true"> Moons </a-select-option>
+      <a-select-option value="false"> Not Moons </a-select-option>
+    </a-select>
+
+    <div class="container">
+      <p v-if="$fetchState.pending">🪐 Chargement des planètes... 🪐</p>
+      <p v-else-if="$fetchState.error">😥 Une erreur est survenue 😥</p>
+      <a-table v-else :columns="columns" :data-source="stars">
+        <nuxt-link
+          slot="name"
+          slot-scope="name, record"
+          :to="{ path: `/${record.id}` }"
+          >{{ name }}</nuxt-link
+        >
+        <span slot="isPlanet" slot-scope="isPlanet"
+          ><a-tag :color="isPlanet ? 'green' : 'volcano'">
+            {{ isPlanet.toString().toUpperCase() }}
+          </a-tag></span
+        >
+        <span slot="mass" slot-scope="mass">{{
+          mass ? mass.massValue : 'unknown'
+        }}</span>
+        <span slot="vol" slot-scope="vol">{{
+          vol ? vol.volValue : 'unknown'
+        }}</span>
+        <a-button slot="more" slot-scope="record" type="primary">
+          <nuxt-link :to="{ path: `/${record.id}` }"> Details</nuxt-link>
+        </a-button>
+      </a-table>
+    </div>
   </div>
 </template>
 
@@ -36,7 +60,7 @@ const columns = [
     scopedSlots: { customRender: 'name' },
   },
   {
-    title: 'Type',
+    title: 'Planet',
     dataIndex: 'isPlanet',
     key: 'isPlanet',
     scopedSlots: { customRender: 'isPlanet' },
@@ -63,15 +87,29 @@ const columns = [
 export default {
   data() {
     return {
-      // data,
       columns,
       stars: [],
+      filterPlanet: 'all',
+      filterMoons: 'all',
     }
   },
   async fetch() {
     this.stars = await this.$axios
       .get('https://api.le-systeme-solaire.net/rest/bodies')
       .then((res) => res.data.bodies)
+  },
+  methods: {
+    async handleFilter() {
+      if (this.filterPlanet === 'all' && this.filterMoons === 'all') {
+        return await this.$fetch()
+      }
+      const filterPlanet = this.filterPlanet === 'true'
+      // const filterMoons = this.filterMoons === 'true'
+
+      this.stars = this.stars.filter((item) => {
+        return filterPlanet === 'all' || item.isPlanet === filterPlanet
+      })
+    },
   },
 }
 </script>
