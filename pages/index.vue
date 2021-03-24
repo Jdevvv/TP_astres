@@ -4,7 +4,7 @@
       v-model="filterPlanet"
       placeholder="Filter Planet"
       style="width: 150px"
-      @change="handleFilter"
+      @change="$fetch"
     >
       <a-select-option value="all"> All </a-select-option>
       <a-select-option value="true"> Planet </a-select-option>
@@ -15,7 +15,7 @@
       v-model="filterMoons"
       placeholder="Contains..."
       style="width: 150px"
-      @change="handleFilter"
+      @change="$fetch"
     >
       <a-select-option value="all"> All </a-select-option>
       <a-select-option value="true"> Moons </a-select-option>
@@ -94,22 +94,37 @@ export default {
     }
   },
   async fetch() {
-    this.stars = await this.$axios
+    await this.$axios
       .get('https://api.le-systeme-solaire.net/rest/bodies')
-      .then((res) => res.data.bodies)
-  },
-  methods: {
-    async handleFilter() {
-      if (this.filterPlanet === 'all' && this.filterMoons === 'all') {
-        return await this.$fetch()
-      }
-      const filterPlanet = this.filterPlanet === 'true'
-      // const filterMoons = this.filterMoons === 'true'
+      .then((res) => {
+        this.stars = res.data.bodies
 
-      this.stars = this.stars.filter((item) => {
-        return filterPlanet === 'all' || item.isPlanet === filterPlanet
+        if (this.filterPlanet !== 'all' && this.filterMoons !== 'all') {
+          this.stars = this.stars.filter((item) =>
+            this.filterPlanet === 'true'
+              ? item.isPlanet === true
+              : item.isPlanet === false && this.filterMoons === 'true'
+              ? item.moons !== null
+              : item.moons === null
+          )
+        }
+
+        if (this.filterPlanet !== 'all') {
+          this.stars = this.stars.filter((item) => {
+            return this.filterPlanet === 'true'
+              ? item.isPlanet !== false
+              : item.isPlanet === false
+          })
+        }
+
+        if (this.filterMoons !== 'all') {
+          this.stars = this.stars.filter((item) => {
+            return this.filterMoons === 'true'
+              ? item.moons !== null
+              : item.moons === null
+          })
+        }
       })
-    },
   },
 }
 </script>

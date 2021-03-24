@@ -8,7 +8,7 @@
         star.englishName
       }}</a-descriptions-item>
       <a-descriptions-item label="isPlanet">
-        {{ star.name }}</a-descriptions-item
+        {{ star.isPlanet }}</a-descriptions-item
       >
       <a-descriptions-item label="moons">{{ star.moons }} </a-descriptions-item>
       <a-descriptions-item label="semimajorAxis"
