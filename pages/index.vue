@@ -1,28 +1,30 @@
 <template>
-  <div>
-    <a-select
-      v-model="filterPlanet"
-      placeholder="Filter Planet"
-      style="width: 150px"
-      @change="$fetch"
-    >
-      <a-select-option value="all"> All </a-select-option>
-      <a-select-option value="true"> Planet </a-select-option>
-      <a-select-option value="false"> Not planet </a-select-option>
-    </a-select>
+  <div class="content">
+    <div class="filters">
+      <div>Filters</div>
+      <a-select
+        v-model="filterPlanet"
+        placeholder="Filter Planet"
+        style="width: 150px"
+        @change="$fetch"
+      >
+        <a-select-option value="all"> All </a-select-option>
+        <a-select-option value="true"> Planet </a-select-option>
+        <a-select-option value="false"> Not planet </a-select-option>
+      </a-select>
 
-    <a-select
-      v-model="filterMoons"
-      placeholder="Contains..."
-      style="width: 150px"
-      @change="$fetch"
-    >
-      <a-select-option value="all"> All </a-select-option>
-      <a-select-option value="true"> Moons </a-select-option>
-      <a-select-option value="false"> Not Moons </a-select-option>
-    </a-select>
-
-    <div class="container">
+      <a-select
+        v-model="filterMoons"
+        placeholder="Contains..."
+        style="width: 150px"
+        @change="$fetch"
+      >
+        <a-select-option value="all"> All </a-select-option>
+        <a-select-option value="true"> Moons </a-select-option>
+        <a-select-option value="false"> Not Moons </a-select-option>
+      </a-select>
+    </div>
+    <div>
       <p v-if="$fetchState.pending">🪐 Chargement des planètes... 🪐</p>
       <p v-else-if="$fetchState.error">😥 Une erreur est survenue 😥</p>
       <a-table v-else :columns="columns" :data-source="stars">
@@ -129,8 +131,13 @@ export default {
 }
 </script>
 
-<style>
-.ant-table-wrapper {
-  width: 90%;
+<style scoped>
+.filters {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.filters div {
+  margin-right: 12px;
 }
 </style>

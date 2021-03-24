@@ -3,3 +3,12 @@
   align-items: center;
   justify-content: center;
 }
+
+.content {
+  width: 80%;
+  margin: auto;
+}
+
+.ant-table-wrapper {
+  width: 100%;
+}

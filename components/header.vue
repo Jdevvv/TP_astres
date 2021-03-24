@@ -3,7 +3,11 @@
     <a-menu-item key="list">
       <nuxt-link to="/"> <a-icon type="unordered-list" />All stars </nuxt-link>
     </a-menu-item>
-    <a-menu-item key="favorites"> <a-icon type="star" />Favorites</a-menu-item>
+    <a-menu-item key="favorites">
+      <nuxt-link to="/favorites">
+        <a-icon type="star" />Favorites</nuxt-link
+      ></a-menu-item
+    >
   </a-menu>
 </template>
 
@@ -16,5 +20,6 @@ export default {
 <style scoped>
 .ant-menu {
   margin-bottom: 32px;
+  padding-left: 8%;
 }
 </style>
