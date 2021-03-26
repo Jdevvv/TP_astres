@@ -1,6 +1,18 @@
-# TP_astres
+# TP_astres 🌠
 
-## Build Setup
+https://tp-astres.vercel.app/
+
+## Description 📝
+
+A Frontend app that display solar system list and details of each star. You can bookmark a star and filter on whether it is a planet and whether it has moons.
+
+**Technology used :**
+
+- Nuxtjs (frontend)
+- Ant Design Vue (UI components)
+- Vercel (Deployment)
+
+## How to use 🔧
 
 ```bash
 # install dependencies
@@ -16,5 +28,3 @@ $ npm run start
 # generate static project
 $ npm run generate
 ```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
