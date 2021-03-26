@@ -1,8 +1,6 @@
 <template>
   <div class="content">
     <div>
-      <!-- <p v-if="$fetchState.pending">🪐 Chargement des planètes... 🪐</p>
-      <p v-else-if="$fetchState.error">😥 Une erreur est survenue 😥</p> -->
       <a-table :columns="columns" :data-source="favorites">
         <nuxt-link
           slot="name"
@@ -30,8 +28,6 @@
 </template>
 
 <script>
-// import { mapMutations } from 'vuex'
-
 const columns = [
   {
     title: 'Name',
