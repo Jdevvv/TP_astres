@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-<img src="https://img.shields.io/badge/nuxt-2.14.12-brightgreen" alt="Nuxt version badge" />
+<img src="https://img.shields.io/badge/nuxt-2.14.12-brightgreen" alt="Nuxt version badge " />
 <img src="https://img.shields.io/badge/ant_design_vue-1.7.2-orange" alt="Ant Design Vue version badge" />
 <img src="https://img.shields.io/badge/cypress-6.8.0-blue" alt="Cypress version badge" />
 <img src="https://img.shields.io/badge/jest-26.6.3-red" alt="Jest version badge" />
