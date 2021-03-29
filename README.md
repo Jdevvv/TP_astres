@@ -9,9 +9,9 @@ A Frontend app that display solar system list and details of each star. You can 
 If a star got some moons, you got the list in the details of this star with link to each moons.
 
 **"+" features :**
-A 404 page
-Storybook
-Cypress
+--> A 404 page
+--> Storybook
+--> Cypress
 
 **Technology used :**
 
