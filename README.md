@@ -2,6 +2,11 @@
 
 https://tp-astres.vercel.app/
 
+![Lighthouse Accessibility Badge](./assets/badge/lighthouse_accessibility.svg)
+![Lighthouse Best Practices Badge](./assets/badge/lighthouse_best-practices.svg)
+![Lighthouse Performance Badge](./assets/badge/lighthouse_performance.svg)
+![Lighthouse SEO Badge](./assets/badge/lighthouse_seo.svg)
+
 ## Description 📝
 
 A Frontend app that display solar system list and details of each star. You can bookmark a star and filter on whether it is a planet and whether it has moons.
