@@ -4,14 +4,14 @@
       <div>Filters</div>
       <a-select v-model="filterPlanet" @change="$fetch">
         <a-select-option value="all"> All </a-select-option>
-        <a-select-option value="true"> Planet </a-select-option>
-        <a-select-option value="false"> Not planet </a-select-option>
+        <a-select-option value="planet"> Planet </a-select-option>
+        <a-select-option value="not planet"> Not planet </a-select-option>
       </a-select>
 
       <a-select v-model="filterMoons" @change="$fetch">
         <a-select-option value="all"> All </a-select-option>
-        <a-select-option value="true"> Moons </a-select-option>
-        <a-select-option value="false"> Not Moons </a-select-option>
+        <a-select-option value="moons"> Moons </a-select-option>
+        <a-select-option value="not moons"> Not Moons </a-select-option>
       </a-select>
     </div>
     <div>
@@ -93,7 +93,7 @@ export default {
 
         if (this.filterPlanet !== 'all' && this.filterMoons !== 'all') {
           this.stars = this.stars.filter((item) =>
-            this.filterPlanet === 'true'
+            this.filterPlanet === 'planet'
               ? item.isPlanet === true
               : item.isPlanet === false && this.filterMoons === 'true'
               ? item.moons !== null
@@ -103,7 +103,7 @@ export default {
 
         if (this.filterPlanet !== 'all') {
           this.stars = this.stars.filter((item) => {
-            return this.filterPlanet === 'true'
+            return this.filterPlanet === 'planet'
               ? item.isPlanet !== false
               : item.isPlanet === false
           })
@@ -111,7 +111,7 @@ export default {
 
         if (this.filterMoons !== 'all') {
           this.stars = this.stars.filter((item) => {
-            return this.filterMoons === 'true'
+            return this.filterMoons === 'moons'
               ? item.moons !== null
               : item.moons === null
           })
