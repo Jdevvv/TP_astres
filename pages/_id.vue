@@ -154,7 +154,7 @@ export default {
       }
 
       for (const pattern in map) {
-        str = str.replace(new RegExp(map[pattern], 'g'), pattern)
+        str = str.replace(new RegExp(map[pattern], 'g'), pattern).toLowerCase()
       }
 
       return str
