@@ -1,7 +1,7 @@
 <h1 align="center">TP_astres 🌠</h1>
 
 <p align="center">
-<a href="https://tp-astres.vercel.app" target="_blank">https://tp-astres.vercel.app</a>
+<a href="https://tp-astres.vercel.app">https://tp-astres.vercel.app</a>
 </p>
 
 <p align="center">
