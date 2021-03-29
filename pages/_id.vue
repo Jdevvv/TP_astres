@@ -96,7 +96,7 @@
             <a-collapse-panel key="1" header="Moons list">
               <ul v-for="moon in star.moons" :key="moon.id">
                 <li>
-                  <nuxt-link :to="{ path: `/${moon.moon}` }">{{
+                  <nuxt-link :to="{ path: `/${slugify(moon.moon)}` }">{{
                     moon.moon
                   }}</nuxt-link>
                 </li>
@@ -140,6 +140,24 @@ export default {
         this.$store.commit('favorites/add', this.star)
         this.$message.success('Added to favorites!')
       }
+    },
+
+    slugify(str) {
+      const map = {
+        a: 'á|à|ã|â|ä|À|Á|Ã|Â|Ä',
+        e: 'é|è|ê|ë|É|È|Ê|Ë',
+        i: 'í|ì|î|ï|Í|Ì|Î|Ï',
+        o: 'ó|ò|ô|õ|ö|Ó|Ò|Ô|Õ|Ö',
+        u: 'ú|ù|û|ü|Ú|Ù|Û|Ü',
+        c: 'ç|Ç',
+        n: 'ñ|Ñ',
+      }
+
+      for (const pattern in map) {
+        str = str.replace(new RegExp(map[pattern], 'g'), pattern)
+      }
+
+      return str
     },
   },
 }
