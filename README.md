@@ -20,7 +20,7 @@
 
 ## Description 📝
 
-A Frontend app that display solar system list and details of each star. You can bookmark a star and filter on whether it is a planet and whether it has moons.
+A Frontend app that display solar system list and details of each star (api : https://api.le-systeme-solaire.net/rest/bodies). You can bookmark a star and filter on whether it is a planet and whether it has moons.
 
 If a star got some moons, you got the list in the details of this star with link to each moons.
 
