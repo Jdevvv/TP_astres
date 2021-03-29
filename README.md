@@ -6,10 +6,13 @@ https://tp-astres.vercel.app/
 
 A Frontend app that display solar system list and details of each star. You can bookmark a star and filter on whether it is a planet and whether it has moons.
 
+If a star got some moons, you got the list in the details of this star with link to each moons
+
 **Technology used :**
 
-- Nuxtjs (frontend)
+- Nuxtjs (Frontend)
 - Ant Design Vue (UI components)
+- Jest (Test framework)
 - Vercel (Deployment)
 
 ## How to use 🔧
