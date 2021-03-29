@@ -89,5 +89,10 @@ sw.*
 # Vim swap files
 *.swp
 
+# Storybook
 storybook-static
 .nuxt-storybook
+
+# Cypress
+cypress/videos
+cypress/screenshots
