@@ -11,8 +11,10 @@
     "lint": "npm run lint:js",
     "test": "jest",
     "storybook": "npx nuxt storybook",
-    "e2e": "cypress open --browser chrome",
-    "e2e:silent": "cypress run"
+    "cypress:run": "cypress run",
+    "cypress:browser": "cypress open --browser chrome",
+    "e2e": " start-server-and-test dev http://localhost:3000 cypress:browser",
+    "e2e:silent": "start-server-and-test dev http://localhost:3000 cypress:run"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.12.5",
@@ -36,6 +38,7 @@
     "eslint-plugin-vue": "^7.5.0",
     "jest": "^26.6.3",
     "prettier": "^2.2.1",
+    "start-server-and-test": "^1.12.1",
     "vue-jest": "^3.0.7"
   }
 }

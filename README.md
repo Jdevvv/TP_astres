@@ -8,15 +8,17 @@ A Frontend app that display solar system list and details of each star. You can 
 
 If a star got some moons, you got the list in the details of this star with link to each moons.
 
-A 404 page is implemented
-
+**"+" features :**
+A 404 page
 Storybook
+Cypress
 
 **Technology used :**
 
 - Nuxtjs (Frontend)
 - Ant Design Vue (UI components)
 - Jest (Test framework)
+- Cypress (End-to-end tests)
 - Vercel (Deployment)
 
 ## How to use 🔧
@@ -30,4 +32,10 @@ $ npm run dev
 
 # serve storybook with hot reload at localhost:3003
 $ npm run storybook
+
+# Jest tests
+$ npm run test
+
+# e2e tests
+$ npm run e2e:silent
 ```
